@@ -1,10 +1,13 @@
 <h1>Editing Book</h1>
 <% if @booker.errors.any? %>
- <%= @booker.errors.count %>件のエラーが発生しました。
+ <%= @booker.errors.count %>errors prohibited this book from being saved
+ <ul>
  <% @booker.errors.full_messages.each do |message| %>
-  <%= message %>
- <% end %>
+  <li><%= message %></li>
+  <% end %>
+  </ul>
 <% end %>
+
 
 <%= form_with model:@booker, local: true do |f| %>
 <h4>Title</h4>
@@ -14,6 +17,6 @@
 <%= f.submit 'Update Book' %>
 <% end %>
 <p>
-<%= link_to "show", booker_path(booker.id) %> |
-<%= link_to "back", :back%>
+<%= link_to "show", booker_path(@booker.id) %> |
+<%= link_to "back", bookers_path %>
 </p>
